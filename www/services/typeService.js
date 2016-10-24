@@ -14,5 +14,19 @@ service.service('typeService', function ($q, $http) {
         return d.promise;
     };
 
+    service.userNew = function (parameter) {
+        var d = $q.defer();
+        $http({
+            method: "POST",
+            url: "http://localhost:8080/user/new",
+            data: parameter
+        }).then(function Succes(response) {
+            d.resolve(response.data);
+        }, function Error(response) {
+            d.reject(response.data);
+        });
+        return d.promise;
+    };
+
     return service;
 });
