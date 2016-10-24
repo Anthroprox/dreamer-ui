@@ -1,31 +1,18 @@
 <ion-view view-title="Publicar">
     <ion-content>
-
         <div class="list">
+             <select ng-model="publicate.category" ng-options="category.name for category in categoryList">
+
             <label class="item item-input item-floating-label">
                 <span class="input-label">Titulo</span>
-                <input type="text" placeholder="Titulo">
+                <input type="text" placeholder="Titulo" ng-model="publicate.title">
             </label>
             <label class="item item-input item-floating-label">
                 <span class="input-label">Cuerpo</span>
-                <textarea rows="5" cols="10" placeholder="Cuerpo"></textarea>
+                <textarea rows="5" cols="10" placeholder="Cuerpo" ng-model="publicate.body"></textarea>
             </label>
         </div>
-        <button class="button col col-50 center button-positive">
-            Publicar
-        </button>
+        <button class="button col col-50 center button-positive" ng-click="public()">Publicar</button>
 
-        <!--<ion-list>
-          <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats" type="item-text-wrap" href="#/tab/chats/{{chat.id}}">
-            <img ng-src="{{chat.face}}">
-            <h2>{{chat.name}}</h2>
-            <p>{{chat.lastText}}</p>
-            <i class="icon ion-chevron-right icon-accessory"></i>
-    
-            <ion-option-button class="button-assertive" ng-click="remove(chat)">
-              Delete
-            </ion-option-button>
-          </ion-item>
-        </ion-list>-->
     </ion-content>
 </ion-view>
