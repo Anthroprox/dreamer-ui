@@ -4,16 +4,14 @@
             <div class="input-label">
                 Categoria
             </div>
-          
-            <select  ng-model="selectedItem" >
-                <option ng-repeat="option in categories" ng-value="option.name">{{option.name}}</option>
+
+            <select id="modelCategories"
+                    ng-disabled="makeNotSelected"
+                    ng-model="modelCategories.id"
+                    ng-options="model.id as model.name for model in data">
             </select>
-
-
         </label>
-
-        <div class="list card"> ng-repeat="x in ideas | filter: {'tipo':selectedItem}">
-
+        <div class="list card" ng-repeat="x in ideas| filter: {'name':modelCategories.id}">
             <div class="item item-avatar">
                 <h2>{{x.user.username}}</h2>
                 <h3>{{x.category.name}}</h3>
@@ -21,10 +19,11 @@
             </div>
             <div class="item item-body">
                 <h2>{{x.title}}</h2>
+
                 <p>
                     {{x.body}}
                 </p>
             </div>
         </div>
-     
+
 </ion-view>

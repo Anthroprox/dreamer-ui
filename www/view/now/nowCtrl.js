@@ -1,8 +1,11 @@
 control.controller('nowCtrl', function ($scope, $http, ideaService, categoryService) {
 $scope.selectedItem = ""; 
  var assignCategory = function (list){   
-             $scope.categories = list;
-        };     
+             $scope.data=list;
+        };   
+        var assingIdeas = function(list){
+            $scope.ideas=list;
+        };
         var error = function(object){        
             // print     
         };   
@@ -11,19 +14,13 @@ $scope.selectedItem = "";
                         .then(assignCategory)
                         .catch(error);
         } ;
-        (function init(){      
-            loadCategoryList();  
-             loadIdeaList(); 
-        })();
-    
-    //--
-     var assignIdeas = function (list){   
-             $scope.ideas = list;
-        };        
-        function loadIdeaList(){        
-                ideaService.ideaList()
-                        .then(assignIdeas)
+        function loadIdeas(){
+            ideaService.ideaList()
+                        .then(assingIdeas)
                         .catch(error);
-        } ;
-         
+        };
+        (function init(){      
+            loadCategoryList();
+            loadIdeas();
+        })();
 });
