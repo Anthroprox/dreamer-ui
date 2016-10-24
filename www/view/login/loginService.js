@@ -7,7 +7,7 @@ service.service('loginService', function ($q, $http) {
         $http({
             method: "GET",
             url: "http://localhost:8080/user/login/"+obj.id+"/"+obj.password
-        }).then(function Succes(response) {
+        }).then(function Success(response) {
             d.resolve(response.data);
         }, function Error(response) {
             d.reject(response.data);
