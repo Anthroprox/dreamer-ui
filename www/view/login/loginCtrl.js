@@ -1,8 +1,8 @@
 control.controller('loginCtrl', function ($scope, $ionicPopup, $state, loginService) {
-    $scope.login = function () {
+    $scope.login = function (id,password) {
         loginService.login({
-            "id": "1",
-            "password": '123'
+            "id": id,
+            "password": password
         }).then(function (data) {
             $scope.data=data;
             $ionicPopup.alert({
