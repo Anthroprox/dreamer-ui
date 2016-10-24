@@ -4,29 +4,27 @@
             <div class="input-label">
                 Categoria
             </div>
-            <select ng-model="tipoSeleccionado">
-                <option>Ambiente</option>
-                <option>Salud</option>
-                <option>Tecnología</option>
+          
+            <select  ng-model="selectedItem" >
+                <option ng-repeat="option in categories" ng-value="option.name">{{option.name}}</option>
             </select>
+
+
         </label>
-        <div class="list card" ng-repeat="x in ideas | filter: {'tipo':tipoSeleccionado}">
+
+        <div class="list card"> ng-repeat="x in ideas | filter: {'tipo':selectedItem}">
+
             <div class="item item-avatar">
-                <img class="people-bar-content-person" ng-src="{{x.foto}}" />
-                <h2>{{x.autor}}</h2>
-                <h3>{{x.tipo}}</h3>
+                <h2>{{x.user.username}}</h2>
+                <h3>{{x.category.name}}</h3>
                 <p>{{x.fecha}}</p>
             </div>
             <div class="item item-body">
-                <h2>{{x.titulo}}</h2>
+                <h2>{{x.title}}</h2>
                 <p>
-                    {{x.cuerpo+" "+myWelcome}}
-                    
-                </p>
-                <p>
-                    <a href="#" class="subdued">{{x.interesados}} Interesados</a>
-                    <a href="#" class="subdued">{{x.comentarios}} Comentarios</a>
+                    {{x.body}}
                 </p>
             </div>
         </div>
+     
 </ion-view>
