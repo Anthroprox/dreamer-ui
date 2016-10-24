@@ -1,6 +1,4 @@
-control.controller('loginCtrl', function ($scope, $ionicPopup, $state,categoryService) {
-    categoryService.categoryList();
-    
+control.controller('loginCtrl', function ($scope, $ionicPopup, $state,loginService) {
     $scope.data = {};
     $scope.login = function () {
         $ionicPopup.alert({
