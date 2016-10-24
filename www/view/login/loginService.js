@@ -4,7 +4,7 @@ service.service('loginService', function ($q, $http) {
     service.categoryList = function () {
         $http({
             method: "GET",
-            url: "http://localhost:8080/category/list"
+            url: "http://localhost:8080/user/login/1/123"
         }).then(function mySucces(response) {
             console.log(response);
         }, function myError(response) {
