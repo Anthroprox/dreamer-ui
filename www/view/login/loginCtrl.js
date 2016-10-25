@@ -6,8 +6,8 @@ control.controller('loginCtrl', function ($scope, $ionicPopup, $state, loginServ
         }).then(function (data) {
             $scope.data = data;
             $ionicPopup.alert({
-                title: 'Login deshabilitado!',
-                template: JSON.stringify(data)
+                title: 'Felicitaciones!',
+                template: "Bienvenido ".concat(data.username,"!")
             });
             $state.go('tab.now', {}, {reload: true});
         }).catch(function (data) {
