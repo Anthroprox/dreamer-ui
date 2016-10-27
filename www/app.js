@@ -25,6 +25,7 @@ app.run(function ($ionicPlatform) {
     });
 })
 
+
 app.config(function ($stateProvider, $urlRouterProvider) {
 
     // Ionic uses AngularUI Router which uses the concept of states
@@ -71,7 +72,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     });
 
 
-    $urlRouterProvider.otherwise('/singup');
+    $urlRouterProvider.otherwise('/login');
 
 });
 
