@@ -5,12 +5,13 @@
                 Categoria
             </div>
          <select id="modelCategories"
+                 name="show-filter"
                 ng-disabled="makeNotSelected"
-                ng-model="modelCategories.id"
+                ng-model="modelCategories"
                 ng-options="model.id as model.name for model in data">
          </select>
         </label>
-        <div class="list card" ng-repeat="x in ideas | filter: {'name':modelCategories.id}">
+        <div class="list card" ng-repeat="x in ideas | filter: modelCategories">
             <div class="item item-avatar">
                 <h2>{{x.user.username}}</h2>
                 <h3>{{x.category.name}}</h3>
