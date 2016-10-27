@@ -14,11 +14,11 @@ service.service('userService', function ($q, $http) {
         return d.promise;
     };
     
-    service.typeNew = function (parameter) {
+    service.userNew = function (parameter) {
         var d = $q.defer();
         $http({
             method: "POST",
-            url: "http://localhost:8080/type/new",
+            url: "http://localhost:8080/user/new",
             data: parameter
         }).then(function Succes(response) {
             d.resolve(response.data);
