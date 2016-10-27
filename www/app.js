@@ -65,6 +65,10 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         url: '/login',
         templateUrl: 'view/login/login.html',
         controller: 'loginCtrl'
+    }).state('singup', {
+        url: '/singup',
+        templateUrl: 'view/singup/singup.html',
+        controller: 'singupCtrl'
     });
 
 
