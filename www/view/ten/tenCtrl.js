@@ -1,6 +1,6 @@
 control.controller('tenCtrl', function ($scope, categoryService,ideaService) {
     
-       $scope.selectedItem = 1;
+     $scope.selectedItem = 1;
     $scope.ideas = "";
     $scope.ideasByCategory = [];
 
@@ -15,31 +15,26 @@ control.controller('tenCtrl', function ($scope, categoryService,ideaService) {
         // print     
     };
     function loadCategoryList() {
-        categoryService.categoryTenList()
+        categoryService.categoryList()
                 .then(assignCategory)
                 .catch(error);
     }
     ;
-    function loadIdeas() {
-        ideaService.ideaList()
+    function loadIdeas(idea) {
+        ideaService.ideaTenList(idea)
                 .then(assingIdeas)
                 .catch(error);
     }
     ;
     $scope.ideasFilter = function(categoryId) {
-        var i = 0;
-        $scope.ideasByCategory = [];
-        for (i; i < $scope.ideas.length; i++) {
-            if ($scope.ideas[i].category.id == categoryId) {
-                $scope.ideasByCategory.push($scope.ideas[i]);
-            }
-        }
+        loadIdeas(categoryId);
     }
     ;
     (function init() {
         loadCategoryList();
-        loadIdeas();
+        loadIdeas(1);
         //$scope.ideasFilter();
     })();
+
 
 });
