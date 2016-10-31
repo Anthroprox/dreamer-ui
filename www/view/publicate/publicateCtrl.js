@@ -1,4 +1,4 @@
-control.controller('publicateCtrl', function ($q, $scope, $ionicPopup, categoryService, ideaService) {
+control.controller('publicateCtrl', function ($q, $scope, $ionicPopup, categoryService, ideaService, loginService) {
 
     $scope.categoryList = [];
     $scope.publicate = {
@@ -6,7 +6,7 @@ control.controller('publicateCtrl', function ($q, $scope, $ionicPopup, categoryS
         "body": "",
         "category": {},
         "user": {
-            "id": 5
+            "id": -1
         }
     };
 
@@ -28,6 +28,9 @@ control.controller('publicateCtrl', function ($q, $scope, $ionicPopup, categoryS
         $scope.publicate.category = $scope.categoryList[0];
     };
 
+    var assignId = function () {
+        $scope.publicate.user = loginService.getLoginInformation();
+    };
 
     var ErrorListaCategories = function (error) {
         $ionicPopup.alert({
@@ -43,14 +46,32 @@ control.controller('publicateCtrl', function ($q, $scope, $ionicPopup, categoryS
         });
     };
 
-    var errorPublicateIdea = function (error) {      
-        throw (typeof error === 'object')? error.message : error;
+    var errorPublicateIdea = function (error) {
+        throw (typeof error === 'object') ? error.message : error;
     };
 
     var postCreateNewPublicate = function () {
         return ideaService.ideaNew($scope.publicate)
                 .then(SuccessCreateIdea)
                 ;
+    };
+    
+    var clearTitle = function (){
+        $scope.publicate.title = "";
+    };
+    
+    var clearBody = function(){
+        $scope.publicate.body = "";
+    };
+
+    var checkSessionEnable = function () {
+        if (!loginService.isLogged())
+            throw "Sesión no establecida";
+    };
+
+    var checkIdNotUndefined = function () {
+        if ($scope.publicate.user.id === -1)
+            throw "Usuario no esta definido";
     };
 
     var checkEmptyTitle = function () {
@@ -66,8 +87,8 @@ control.controller('publicateCtrl', function ($q, $scope, $ionicPopup, categoryS
     var reportError = function (error) {
         throw error;
     };
-    
-    var throwError = function(error){
+
+    var throwError = function (error) {
         $ionicPopup.alert({
             title: 'Error!',
             template: error
@@ -76,10 +97,14 @@ control.controller('publicateCtrl', function ($q, $scope, $ionicPopup, categoryS
 
     $scope.public = function () {
         newPromise()
+                .then(checkSessionEnable)
+                .then(checkIdNotUndefined)
                 .then(checkEmptyTitle)
                 .then(checkEmptyBody)
                 .catch(reportError)
                 .then(postCreateNewPublicate)
+                .then(clearTitle)
+                .then(clearBody)
                 .catch(errorPublicateIdea)
                 .catch(throwError)
                 ;
@@ -90,6 +115,7 @@ control.controller('publicateCtrl', function ($q, $scope, $ionicPopup, categoryS
         loadCategoryList()
                 .then(assignCategoryList)
                 .then(assignFirstCategory)
+                .then(assignId)
                 .catch(ErrorListaCategories)
                 ;
     }
