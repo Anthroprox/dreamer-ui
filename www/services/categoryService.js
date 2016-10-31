@@ -13,7 +13,7 @@ service.service('categoryService', function ($q, $http) {
         });
         return d.promise;
     };
-
+    
     service.categoryNew = function (parameter) {
         var d = $q.defer();
         $http({
