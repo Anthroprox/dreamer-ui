@@ -37,6 +37,10 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         url: '/tab',
         abstract: true,
         templateUrl: 'templates/tabs.html'
+    }).state('init', {
+        url: '/init',
+        abstract: true,
+        templateUrl: 'templates/init.html'
     }).state('tab.now', {
         url: '/now',
         views: {
@@ -61,18 +65,25 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 controller: 'tenCtrl'
             }
         }
-    }).state('login', {
+    }).state('init.login', {
         url: '/login',
-        templateUrl: 'view/login/login.html',
-        controller: 'loginCtrl'
-    }).state('singup', {
-        url: '/singup',
-        templateUrl: 'view/singup/singup.html',
-        controller: 'singupCtrl'
+        views: {
+            'init-login': {
+                templateUrl: 'view/login/init-login.html',
+                controller: 'loginCtrl'
+            }
+        }
+    }).state('init.singup', {
+        url: '/signup',
+        views: {
+            'init-signup': {
+                templateUrl: 'view/signup/init-signup.html',
+                controller: 'signupCtrl'
+            }
+        }
     });
 
-
-    $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/init/login');
 
 });
 
