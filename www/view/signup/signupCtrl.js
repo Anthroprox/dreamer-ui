@@ -1,4 +1,4 @@
-control.controller('singupCtrl', function ($q, $scope, $state, $ionicPopup, userService) {
+control.controller('signupCtrl', function ($q, $scope, $state, $ionicPopup, userService) {
     $scope.user = {
         username: 'user2',
         password: '123',
