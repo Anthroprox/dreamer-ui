@@ -9,22 +9,31 @@
             <select ng-model="selectedItem"  ng-change="ideasFilter(selectedItem)"  >
                 <option ng-repeat="item in categories" value="{{item.id}}">{{item.name}} </option>
             </select>
-            
+
 
         </label> 
         <div>{{selectedItem.id}}</div>
-       <div class="list card" ng-repeat="x in ideasByCategory" ng-model="ideasByCategory">
-            <div class="item item-avatar">
-                <h2>{{x.user.username}}</h2>
-                <h3>{{x.category.name}}</h3>
-                <p>{{x.fecha}}</p>
+        <div class="list card" ng-repeat="x in ideasByCategory" ng-model="ideasByCategory">
+            <div class="item item-avatar title-bar">
+                <div class="title-bar__title">
+                    <span style="">{{x.title}}</span> 
+                </div>
+                <div class="title-bar__user">
+                    <span style="">{{x.user.username}}</span>
+                    <!--<h3>{{x.category.name}}</h3>-->
+                    <span>{{x.fecha}}</span>
+                </div>
             </div>
-            <div class="item item-body">
-                <h2>{{x.title}}</h2>
+            <div class="item item-body body">
+                <!--<h2 style="margin: 0;">{{x.title}}</h2>-->
 
-                <p>
+                <p class="body__p">
                     {{x.body}}
                 </p>
+            </div>
+            <div class="item item-avatar comments-bar">
+                <span>Likes: </span>
+                <span>Comentarios: </span>
             </div>
         </div>  
 

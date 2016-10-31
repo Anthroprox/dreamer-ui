@@ -3,3 +3,42 @@
     margin-right: auto;
     display: block;
 }
+
+.title-bar{
+    color: white; 
+    font-size: 25px; 
+    padding: 0 0 0 8px;
+    background: rgba(51, 205, 95, 0.76);
+    min-height: 30px;
+    border: 1px solid #ddd;
+}
+
+.title-bar__title{
+    display: inline-block;
+    margin-top: 1px;
+}
+
+.title-bar__user{
+    display: inline-block; 
+    margin-top: 1px; 
+    float: right;
+}
+
+.body{
+    margin: 0; 
+    padding: 0 8px;
+}
+
+.body__p{
+    margin-top: 3px !important; 
+    padding-left: inherit;
+}
+
+.comments-bar{
+     padding: 0 8px;
+     background: rgba(221, 221, 221, 0.68);
+     min-height: 0;
+     border: 1px solid #ddd;
+     text-align: end;
+     font-size: inherit;
+}
