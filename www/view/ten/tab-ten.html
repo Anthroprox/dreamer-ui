@@ -11,20 +11,24 @@
             </select>
             
 
-        </label> 
+       </label> 
         <div>{{selectedItem.id}}</div>
        <div class="list card" ng-repeat="x in ideas" ng-model="ideasByCategory">
-            <div class="item item-avatar">
-                <h2>{{x.user.username}}</h2>
-                <h3>{{x.category.name}}</h3>
-                <p>{{x.fecha}}</p>
+            <div class="item item-avatar title-bar">
+                <div class="title-bar__title">
+                    <span>{{x.title}}</span> 
+                </div>
+                <div class="title-bar__user user-ten">
+                    <p style="color: white">{{x.user.username}}</p>
+                 <p style="color: white">{{x.category.name}}</p>
+                 <!--<span>{{x.fecha}}</span>-->
+                 </div>
             </div>
-            <div class="item item-body">
-                <h2>{{x.title}}</h2>
-
-                <p>
+            <div class="item item-body body">
+                <p class="body__p">
                     {{x.body}}
                 </p>
+
             </div>
         </div>  
 
