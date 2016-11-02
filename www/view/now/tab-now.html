@@ -7,7 +7,6 @@
             <select ng-model="selected.Item" ng-options="category.name for category in categories" ng-change="ideasFilter()"></select>
 
         </label> 
-        <div>{{selected.Item}}</div>
         <div class="list card" ng-repeat="x in ideasByCategory" ng-model="ideasByCategory">
             <div class="item item-avatar title-bar">
                 <div class="title-bar__title">
