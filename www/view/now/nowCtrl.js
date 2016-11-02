@@ -3,6 +3,7 @@ control.controller('nowCtrl', function ($scope, $http, ideaService, categoryServ
     $scope.selectedItem = 1;
     $scope.ideas = "";
     $scope.ideasByCategory = [];
+    $scope.likes = 0;
 
     var assignCategory = function (list) {
         $scope.categories = list;
@@ -36,6 +37,9 @@ control.controller('nowCtrl', function ($scope, $http, ideaService, categoryServ
         }
     }
     ;
+    $scope.countLikes = function(){
+        $scope.likes = $scope.likes + 1;
+    };
     (function init() {
         loadCategoryList();
         loadIdeas();
