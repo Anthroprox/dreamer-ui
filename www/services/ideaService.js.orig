@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+service.service('ideaService', function ($q, $http, opinionService) {
+    var service = {};
+
+=======
 service.service('ideaService', function ($q, $http, opinionService, commentaryService) {
     var storage = localStorage;
     var service = {};
@@ -10,6 +15,7 @@ service.service('ideaService', function ($q, $http, opinionService, commentarySe
         return JSON.parse(storage.getItem('idea'));
     };
 
+>>>>>>> develop
     var getIdeaFromBackend = function () {
         var d = $q.defer();
         $http({
@@ -22,7 +28,11 @@ service.service('ideaService', function ($q, $http, opinionService, commentarySe
         });
         return d.promise;
     };
+<<<<<<< HEAD
+       var getIdeaByDateFromBackend = function () {
+=======
     var getIdeaByDateFromBackend = function () {
+>>>>>>> develop
         var d = $q.defer();
         $http({
             method: "GET",
@@ -47,11 +57,14 @@ service.service('ideaService', function ($q, $http, opinionService, commentarySe
                         i["disapprove"] = approve;
                     });
 
+<<<<<<< HEAD
+=======
             commentaryService.getCommentaryByIdea(i.id)
                     .then(function (list) {
                         i["comentary"] = list;
                     })
                     ;
+>>>>>>> develop
             return i;
         });
     };
@@ -61,12 +74,20 @@ service.service('ideaService', function ($q, $http, opinionService, commentarySe
                 .then(setApproveAndDisapproveToListIdea)
                 ;
     };
+<<<<<<< HEAD
+     service.ideaByDateList = function () {
+=======
     service.ideaByDateList = function () {
+>>>>>>> develop
         return getIdeaByDateFromBackend()
                 .then(setApproveAndDisapproveToListIdea)
                 ;
     };
+<<<<<<< HEAD
+    
+=======
 
+>>>>>>> develop
 
     service.ideaNew = function (parameter) {
         var d = $q.defer();
@@ -81,7 +102,11 @@ service.service('ideaService', function ($q, $http, opinionService, commentarySe
         });
         return d.promise;
     };
+<<<<<<< HEAD
+    
+=======
 
+>>>>>>> develop
     service.ideaTenList = function (id) {
         var d = $q.defer();
         $http({

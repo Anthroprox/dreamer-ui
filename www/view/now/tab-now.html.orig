@@ -27,7 +27,12 @@
             <div class="item item-avatar comments-bar">
                 <a ng-click="assignApprove(x.id)"> Aprobar {{x.approve}} </a>
                 <a ng-click="assingDisapprove(x.id)"> Desaprobar {{x.disapprove}} </a>
+<<<<<<< HEAD
+
+                <span>Comentarios: </span>
+=======
                 <a ng-click="showComentaries(x)"> Comentarios </a>
+>>>>>>> develop
             </div>
 
         </div>  

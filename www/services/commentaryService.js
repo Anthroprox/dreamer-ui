@@ -27,6 +27,19 @@ service.service('commentaryService', function ($q, $http) {
         });
         return d.promise;
     };
+    
+    service.getCommentaryByIdea = function (idea) {
+        var d = $q.defer();
+        $http({
+            method: "GET",
+            url: "http://localhost:8080/commentary/idea/".concat(idea)
+        }).then(function Succes(response) {
+            d.resolve(response.data);
+        }, function Error(response) {
+            d.reject(response.data);
+        });
+        return d.promise;
+    };
 
     return service;
 });

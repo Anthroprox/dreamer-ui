@@ -1,9 +1,16 @@
+<<<<<<< HEAD
 control.controller('tenCtrl', function ($scope, categoryService, ideaService, opinionService, loginService) {
-control.controller('tenCtrl', function ($scope, categoryService,ideaService, opinionService, loginService) {
     $scope.selected = {
         "Item": {}
+    };
     $scope.ideas = [];
+=======
+control.controller('tenCtrl', function ($scope, categoryService,ideaService, opinionService, loginService) {
+    
+     $scope.selectedItem = 1;
     $scope.ideas = [];
+    $scope.ideasByCategory = [];
+>>>>>>> develop
 
     var assignCategory = function (list) {
         $scope.categories = list;
@@ -39,6 +46,10 @@ control.controller('tenCtrl', function ($scope, categoryService,ideaService, opi
             "type": {"id": 1}
         })
                 .then(loadIdeas)
+<<<<<<< HEAD
+=======
+                .then($scope.ideasFilter)
+>>>>>>> develop
                 .catch(error);
     };
     $scope.assingDisapprove = function (idIdea) {
@@ -48,6 +59,10 @@ control.controller('tenCtrl', function ($scope, categoryService,ideaService, opi
             "type": {"id": 2}
         })
                 .then(loadIdeas)
+<<<<<<< HEAD
+=======
+                .then($scope.ideasFilter)
+>>>>>>> develop
                 .catch(error);
     };
     (function init() {

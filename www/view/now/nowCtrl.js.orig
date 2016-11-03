@@ -1,9 +1,18 @@
-control.controller('nowCtrl', function ($scope, $q, $rootScope, $state, ideaService, categoryService, opinionService, loginService) {
+<<<<<<< HEAD
+control.controller('nowCtrl', function ($scope, $http, ideaService, categoryService, opinionService, loginService) {
     
     $scope.selected = {
         "item": {}
     };
+    
+=======
+control.controller('nowCtrl', function ($scope, $q, $rootScope, $state, ideaService, categoryService, opinionService, loginService) {
 
+    $scope.selected = {
+        "item": {}
+    };
+
+>>>>>>> develop
     $scope.selected.item = {
         "id": -1,
         "name": ""
@@ -12,12 +21,15 @@ control.controller('nowCtrl', function ($scope, $q, $rootScope, $state, ideaServ
     $scope.ideasByCategory = [];
 
 
+<<<<<<< HEAD
+=======
     var newPromise = function (datos) {
         var defer = $q.defer();
         defer.resolve(datos);
         return defer.promise;
     };
 
+>>>>>>> develop
     var assignCategory = function (list) {
         $scope.categories = list;
     };
@@ -62,7 +74,11 @@ control.controller('nowCtrl', function ($scope, $q, $rootScope, $state, ideaServ
                 .then($scope.ideasFilter)
                 .catch(error);
     };
+<<<<<<< HEAD
+    
+=======
 
+>>>>>>> develop
     $scope.assingDisapprove = function (idIdea) {
         opinionService.opinionNew({
             "user": {"id": loginService.getLoginInformation().id},
@@ -73,6 +89,9 @@ control.controller('nowCtrl', function ($scope, $q, $rootScope, $state, ideaServ
                 .then($scope.ideasFilter)
                 .catch(error);
     };
+<<<<<<< HEAD
+    
+=======
 
     var saveIdea = function (idea) {
         ideaService.setIdeaInformation(idea);
@@ -91,6 +110,7 @@ control.controller('nowCtrl', function ($scope, $q, $rootScope, $state, ideaServ
     };
 
 
+>>>>>>> develop
     (function init() {
         loadCategoryList();
         loadIdeas();
