@@ -1,4 +1,4 @@
-control.controller('commentaryCtrl', function ($q,$scope, commentaryService, loginService) {
+control.controller('commentaryCtrl', function ($q, $rootScope, $scope, commentaryService, loginService, ideaService) {
     $scope.list_comentaries = [];
     $scope.comentary = {
         "idea": {
@@ -9,47 +9,57 @@ control.controller('commentaryCtrl', function ($q,$scope, commentaryService, log
         },
         "message": ""
     };
-    
-    var newPromise = function(){
+
+    var newPromise = function () {
         var defer = $q.defer();
         defer.resolve();
         return defer.promise;
     };
     
-    var setListComentaries = function (list) {
-        $scope.list_comentaries = list;
-    };
-    var getComentariesByIdea = function () {
-        commentaryService
-                .getCommentaryByIdea($scope.comentary.idea.id)
-                .then(setListComentaries);
+    var setComentaries = function(datos){
+        $scope.comentary.idea.comentary = angular.copy(datos);
     };
     
-    var getUserId= function(){
-      $scope.comentary.user.id = loginService.getLoginInformation().id;  
+    var getComentariesByIdeaFromBackend = function(){
+        commentaryService.getCommentaryByIdea($scope.comentary.idea.id)
+                .then(setComentaries)
+        ;
     };
-    
-    var getIdeaId= function(){
-        $scope.comentary.idea.id = 2;
-    }
-    
-    var clearMessageOnComentaryTextArea = function(){
+
+    var getUserId = function () {
+        $scope.comentary.user = angular.copy(loginService.getLoginInformation());
+    };
+
+    var getIdeaId = function () {
+        $scope.comentary.idea = angular.copy(ideaService.getIdeaInformation());
+    };
+
+    var clearMessageOnComentaryTextArea = function () {
         $scope.comentary.message = "";
     };
-    
+
     $scope.post = function () {
         commentaryService
                 .commentaryNew($scope.comentary)
-                .then(getComentariesByIdea)
+                .then(getComentariesByIdeaFromBackend)
                 .then(clearMessageOnComentaryTextArea)
-        ;
+                .catch(function(error){
+                    console.log(error);
+                })
+                ;
     };
-    
-    (function init(){
+
+    ($scope.init = function () {
         newPromise()
                 .then(getUserId)
                 .then(getIdeaId)
-                .then(getComentariesByIdea)
-        ;
+                .then(getComentariesByIdeaFromBackend)
+                ;
     })();
+
+    $rootScope.$on("someEvent", function () {
+        $scope.init();
+    });
+
+
 });

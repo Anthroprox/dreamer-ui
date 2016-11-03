@@ -1,5 +1,14 @@
 service.service('ideaService', function ($q, $http, opinionService, commentaryService) {
+    var storage = localStorage;
     var service = {};
+
+    service.setIdeaInformation = function (data) {
+        storage.setItem('idea', JSON.stringify(data));
+    };
+
+    service.getIdeaInformation = function () {
+        return JSON.parse(storage.getItem('idea'));
+    };
 
     var getIdeaFromBackend = function () {
         var d = $q.defer();
@@ -13,7 +22,7 @@ service.service('ideaService', function ($q, $http, opinionService, commentarySe
         });
         return d.promise;
     };
-       var getIdeaByDateFromBackend = function () {
+    var getIdeaByDateFromBackend = function () {
         var d = $q.defer();
         $http({
             method: "GET",
@@ -43,7 +52,6 @@ service.service('ideaService', function ($q, $http, opinionService, commentarySe
                         i["comentary"] = list;
                     })
                     ;
-            console.log(i);
             return i;
         });
     };
@@ -53,12 +61,12 @@ service.service('ideaService', function ($q, $http, opinionService, commentarySe
                 .then(setApproveAndDisapproveToListIdea)
                 ;
     };
-     service.ideaByDateList = function () {
+    service.ideaByDateList = function () {
         return getIdeaByDateFromBackend()
                 .then(setApproveAndDisapproveToListIdea)
                 ;
     };
-    
+
 
     service.ideaNew = function (parameter) {
         var d = $q.defer();
@@ -73,7 +81,7 @@ service.service('ideaService', function ($q, $http, opinionService, commentarySe
         });
         return d.promise;
     };
-    
+
     service.ideaTenList = function (id) {
         var d = $q.defer();
         $http({

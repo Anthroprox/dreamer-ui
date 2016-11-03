@@ -2,10 +2,10 @@
 
     <ion-content>
         <ion-item>
-            <h1 class="title"><b>{{list_comentaries[0].idea.title}}</b></h1>
-            {{list_comentaries[0].user.username}}
+            <h1 class="title"><b>{{comentary.idea.title}}</b></h1>
+            {{comentary.user.username}}
         </ion-item>
-        <ion-item collection-repeat="comentary in list_comentaries">
+        <ion-item collection-repeat="comentary in comentary.idea.comentary">
             <h2><b>{{comentary.user.username}}:</b> {{comentary.message}}</h2>
         </ion-item>
         <ion-item>
