@@ -1,4 +1,4 @@
-service.service('ideaService', function ($q, $http, opinionService) {
+service.service('ideaService', function ($q, $http, opinionService, commentaryService) {
     var service = {};
 
     var getIdeaFromBackend = function () {
@@ -27,6 +27,12 @@ service.service('ideaService', function ($q, $http, opinionService) {
                         i["disapprove"] = approve;
                     });
 
+            commentaryService.getCommentaryByIdea(i.id)
+                    .then(function (list) {
+                        i["comentary"] = list;
+                    })
+                    ;
+            console.log(i);
             return i;
         });
     };
