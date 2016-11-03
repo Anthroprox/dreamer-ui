@@ -4,25 +4,20 @@
             <div class="input-label">
                 Categoria
             </div>
-            <!--<select ng-options="item as item.name for item in categories" 
-   ng-model="selectedItem" ng-change="ideasFilter()"></select>-->
-            <select ng-model="selectedItem"  ng-change="ideasFilter(selectedItem)"  >
-                <option ng-repeat="item in categories" value="{{item.id}}">{{item.name}} </option>
-            </select>
-
+            <select ng-model="selected.Item" ng-options="category.name for category in categories" ng-change="ideasFilter()"></select>
 
         </label> 
-        <div>{{selectedItem.id}}</div>
         <div class="list card" ng-repeat="x in ideasByCategory" ng-model="ideasByCategory">
             <div class="item item-avatar title-bar">
                 <div class="title-bar__title">
-                    <span style="">{{x.title}}</span> 
+                    <span>{{x.title}}</span> 
                 </div>
                 <div class="title-bar__user">
                     <span style="">{{x.user.username}}</span>
                     <!--<h3>{{x.category.name}}</h3>-->
                     <span>{{x.fecha}}</span>
                 </div>
+
             </div>
             <div class="item item-body body">
                 <!--<h2 style="margin: 0;">{{x.title}}</h2>-->
@@ -32,9 +27,12 @@
                 </p>
             </div>
             <div class="item item-avatar comments-bar">
-                <span>Likes: </span>
+                <a ng-click="assignApprove(x.id)"> Aprobar {{x.approve}} </a>
+                <a ng-click="assingDisapprove(x.id)"> Desaprobar {{x.disapprove}} </a>
+
                 <span>Comentarios: </span>
             </div>
+
         </div>  
 
 </ion-view>
