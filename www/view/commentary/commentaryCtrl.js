@@ -1,5 +1,4 @@
 control.controller('commentaryCtrl', function ($q, $rootScope, $scope, commentaryService, loginService, ideaService) {
-    $scope.list_comentaries = [];
     $scope.comentary = {
         "idea": {
             "id": -1
