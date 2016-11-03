@@ -56,6 +56,7 @@ control.controller('nowCtrl', function ($scope, $http, ideaService, categoryServ
                 .then($scope.ideasFilter)
                 .catch(error);
     };
+    
     $scope.assingDisapprove = function (idIdea) {
         opinionService.opinionNew({
             "user": {"id": loginService.getLoginInformation().id},
@@ -66,6 +67,7 @@ control.controller('nowCtrl', function ($scope, $http, ideaService, categoryServ
                 .then($scope.ideasFilter)
                 .catch(error);
     };
+    
     (function init() {
         loadCategoryList();
         loadIdeas();

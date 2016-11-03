@@ -67,6 +67,7 @@ service.service('ideaService', function ($q, $http, opinionService) {
         });
         return d.promise;
     };
+    
     service.ideaTenList = function (id) {
         var d = $q.defer();
         $http({
@@ -77,7 +78,8 @@ service.service('ideaService', function ($q, $http, opinionService) {
         }, function Error(response) {
             d.reject(response.data);
         });
-        return d.promise;
+        return d.promise.then(setApproveAndDisapproveToListIdea);
     };
+
     return service;
 });
