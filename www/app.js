@@ -65,6 +65,14 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 controller: 'tenCtrl'
             }
         }
+    }).state('tab.commentary', {
+        url: '/commentary',
+        views: {
+            'tab-commentary': {
+                templateUrl: 'view/commentary/tab-commentary.html',
+                controller: 'commentaryCtrl'
+            }
+        }
     }).state('init.login', {
         url: '/login',
         views: {

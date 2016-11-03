@@ -1,0 +1,21 @@
+<ion-view view-title="Ideas">
+
+    <ion-content>
+        <ion-item>
+            <h1 class="title"><b>{{list_comentaries[0].idea.title}}</b></h1>
+            {{list_comentaries[0].user.username}}
+        </ion-item>
+        <ion-item collection-repeat="comentary in list_comentaries">
+            <h2><b>{{comentary.user.username}}:</b> {{comentary.message}}</h2>
+        </ion-item>
+        <ion-item>
+            <label class="item item-input">
+                <textarea placeholder="Add Commentary" ng-model="comentary.message"></textarea>
+            </label>
+        </ion-item>
+        <ion-item>
+            <button class="button button-balanced" ng-click="post()">Post</button>
+        </ion-item>
+    </ion-content>
+
+</ion-view>
