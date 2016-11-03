@@ -7,28 +7,27 @@
             <select ng-model="selected.Item" ng-options="category.name for category in categories" ng-change="ideasFilter()"></select>
 
         </label> 
-        <div class="list card" ng-repeat="x in ideasByCategory" ng-model="ideasByCategory">
-            <div class="item item-avatar title-bar">
-                <div class="title-bar__title">
-                    <span>{{x.title}}</span> 
-                </div>
-                <div class="title-bar__user">
-                    <span style="">{{x.user.username}}</span>
-                </div>
 
+        <div class="list card" ng-repeat="x in ideasByCategory" ng-model="ideasByCategory">
+
+            <div class="item item-avatar item-divider">
+                <div class="item item-body">
+                    <h2>{{x.title}}</h2>
+                    <p>{{x.user.username}}</p>
+                    <p>{{ x.date | date : format}}</p>
+                </div>
             </div>
-            <div class="item item-body body">
-                <!--<h2 style="margin: 0;">{{x.title}}</h2>-->
+            <div class="item item-body">
                 <span>{{ x.date | date : format}}</span>
                 <p class="body__p">
                     {{x.body}}
                 </p>
-            </div>
-            <div class="item item-avatar comments-bar">
-                <a ng-click="assignApprove(x.id)"> Aprobar {{x.approve}} </a>
-                <a ng-click="assingDisapprove(x.id)"> Desaprobar {{x.disapprove}} </a>
-                <a ng-click="showComentaries(x)"> Comentarios </a>
+                <p>
+                    <a ng-click="assignApprove(x.id)"> Aprobar {{x.approve}} </a>
+                    <a ng-click="assingDisapprove(x.id)"> Desaprobar {{x.disapprove}} </a>
+                    <a ng-click="showComentaries(x)"> Comentarios </a>
+                </p>
             </div>
 
-        </div>  
+        </div>
 </ion-view>
