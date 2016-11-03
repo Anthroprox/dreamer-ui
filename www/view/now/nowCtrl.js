@@ -29,7 +29,7 @@ control.controller('nowCtrl', function ($scope, $http, ideaService, categoryServ
     }
     ;
     function loadIdeas() {
-        ideaService.ideaList()
+        ideaService.ideaByDateList()
                 .then(assingIdeas)
                 .catch(error);
         //  console.log($scope.selectedItem);
