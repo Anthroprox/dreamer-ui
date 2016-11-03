@@ -1,9 +1,9 @@
-control.controller('nowCtrl', function ($scope, $http, ideaService, categoryService, opinionService, loginService) {
-    
+control.controller('nowCtrl', function ($scope, $q, $rootScope, $state, ideaService, categoryService, opinionService, loginService) {
+
     $scope.selected = {
         "item": {}
     };
-    
+
     $scope.selected.item = {
         "id": -1,
         "name": ""
@@ -11,6 +11,12 @@ control.controller('nowCtrl', function ($scope, $http, ideaService, categoryServ
     $scope.ideas = "";
     $scope.ideasByCategory = [];
 
+
+    var newPromise = function (datos) {
+        var defer = $q.defer();
+        defer.resolve(datos);
+        return defer.promise;
+    };
 
     var assignCategory = function (list) {
         $scope.categories = list;
@@ -56,7 +62,7 @@ control.controller('nowCtrl', function ($scope, $http, ideaService, categoryServ
                 .then($scope.ideasFilter)
                 .catch(error);
     };
-    
+
     $scope.assingDisapprove = function (idIdea) {
         opinionService.opinionNew({
             "user": {"id": loginService.getLoginInformation().id},
@@ -67,7 +73,24 @@ control.controller('nowCtrl', function ($scope, $http, ideaService, categoryServ
                 .then($scope.ideasFilter)
                 .catch(error);
     };
-    
+
+    var saveIdea = function (idea) {
+        ideaService.setIdeaInformation(idea);
+    };
+
+    var goToComentaryView = function () {
+        $rootScope.$emit("someEvent", {});
+        $state.go('tab.commentary', {}, {reload: false});
+    };
+
+    $scope.showComentaries = function (idea) {
+        newPromise(idea)
+                .then(saveIdea)
+                .then(goToComentaryView)
+                ;
+    };
+
+
     (function init() {
         loadCategoryList();
         loadIdeas();
