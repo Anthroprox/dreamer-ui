@@ -2,17 +2,12 @@
     <ion-content class="padding">
         <label class="item item-input item-select"> 
             <div class="input-label">
-                Categoria
+                Categoría
             </div>
-            <!--<select ng-options="item as item.name for item in categories" 
-   ng-model="selectedItem" ng-change="ideasFilter()"></select>-->
-            <select ng-model="selectedItem"  ng-change="ideasFilter(selectedItem)"  >
-                <option ng-repeat="item in categories" value="{{item.id}}">{{item.name}} </option>
-            </select>
+            <select ng-model="selected.Item" ng-options="category.name for category in categories" ng-change="ideasFilter()"></select>
         </label> 
-        <div>{{selectedItem.id}}</div>
 
-        <div class="list card" ng-repeat="x in ideas" ng-model="ideasByCategory">
+        <div class="list card" ng-repeat="x in ideas">
 
             <div class="item item-avatar item-divider">
                 <h2>{{x.title}}</h2>

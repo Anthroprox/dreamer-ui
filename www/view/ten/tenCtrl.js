@@ -1,18 +1,17 @@
-control.controller('tenCtrl', function ($scope, categoryService,ideaService, opinionService, loginService) {
-    
-     $scope.selectedItem = 1;
+control.controller('tenCtrl', function ($scope, categoryService, ideaService, opinionService, loginService) {
+    $scope.selected = {
+        "Item": {}
+    };
     $scope.ideas = [];
-    $scope.ideasByCategory = [];
 
     var assignCategory = function (list) {
         $scope.categories = list;
     };
     var assingIdeas = function (list) {
         $scope.ideas = list;
-        //$scope.ideasFilter();
     };
     var error = function (object) {
-        // print     
+        console.log(object);   
     };
     function loadCategoryList() {
         categoryService.categoryList()
@@ -20,14 +19,16 @@ control.controller('tenCtrl', function ($scope, categoryService,ideaService, opi
                 .catch(error);
     }
     ;
-    function loadIdeas(idea) {
-        ideaService.ideaTenList(idea)
-                .then(assingIdeas)
-                .catch(error);
+    function loadIdeas() {
+        if ($scope.selected.Item.id)
+            ideaService
+                    .ideaTenList($scope.selected.Item.id)
+                    .then(assingIdeas)
+                    .catch(error);
     }
     ;
-    $scope.ideasFilter = function(categoryId) {
-        loadIdeas(categoryId);
+    $scope.ideasFilter = function () {
+        loadIdeas($scope.selected.Item.id);
     }
     ;
     $scope.assignApprove = function (idIdea) {
@@ -37,7 +38,6 @@ control.controller('tenCtrl', function ($scope, categoryService,ideaService, opi
             "type": {"id": 1}
         })
                 .then(loadIdeas)
-                .then($scope.ideasFilter)
                 .catch(error);
     };
     $scope.assingDisapprove = function (idIdea) {
@@ -47,12 +47,9 @@ control.controller('tenCtrl', function ($scope, categoryService,ideaService, opi
             "type": {"id": 2}
         })
                 .then(loadIdeas)
-                .then($scope.ideasFilter)
                 .catch(error);
     };
     (function init() {
         loadCategoryList();
-        loadIdeas(1);
-        //$scope.ideasFilter();
     })();
 });
