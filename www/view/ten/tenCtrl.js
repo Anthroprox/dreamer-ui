@@ -1,8 +1,7 @@
-control.controller('tenCtrl', function ($scope, categoryService, ideaService, opinionService, loginService) {
 control.controller('tenCtrl', function ($scope, categoryService,ideaService, opinionService, loginService) {
     $scope.selected = {
         "Item": {}
-    $scope.ideas = [];
+    };
     $scope.ideas = [];
 
     var assignCategory = function (list) {
