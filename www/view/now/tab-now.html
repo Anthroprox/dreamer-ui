@@ -14,16 +14,14 @@
                 </div>
                 <div class="title-bar__user">
                     <span style="">{{x.user.username}}</span>
-                    <!--<h3>{{x.category.name}}</h3>-->
-                    <span>{{x.fecha}}</span>
                 </div>
 
             </div>
             <div class="item item-body body">
                 <!--<h2 style="margin: 0;">{{x.title}}</h2>-->
-
+                <span>{{ x.date | date : format}}</span>
                 <p class="body__p">
-                    {{x.body}}
+                    {{x}}
                 </p>
             </div>
             <div class="item item-avatar comments-bar">
