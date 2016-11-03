@@ -1,9 +1,15 @@
-control.controller('tenCtrl', function ($scope, categoryService,ideaService, opinionService, loginService) {
+control.controller('tenCtrl', function ($scope,$q,$rootScope,$state, categoryService, ideaService, opinionService, loginService) {
     $scope.selected = {
         "Item": {}
     };
     $scope.ideas = [];
 
+    var newPromise = function (datos) {
+        var defer = $q.defer();
+        defer.resolve(datos);
+        return defer.promise;
+    };
+    
     var assignCategory = function (list) {
         $scope.categories = list;
     };
@@ -11,7 +17,7 @@ control.controller('tenCtrl', function ($scope, categoryService,ideaService, opi
         $scope.ideas = list;
     };
     var error = function (object) {
-        console.log(object);   
+        console.log(object);
     };
     function loadCategoryList() {
         categoryService.categoryList()
@@ -49,6 +55,23 @@ control.controller('tenCtrl', function ($scope, categoryService,ideaService, opi
                 .then(loadIdeas)
                 .catch(error);
     };
+    
+    var saveIdea = function (idea) {
+        ideaService.setIdeaInformation(idea);
+    };
+
+    var goToComentaryView = function () {
+        $rootScope.$emit("someEvent", {});
+        $state.go('tab.commentary', {}, {reload: false});
+    };
+
+    $scope.showComentaries = function (idea) {
+        newPromise(idea)
+                .then(saveIdea)
+                .then(goToComentaryView)
+                ;
+    };
+
     (function init() {
         loadCategoryList();
     })();

@@ -19,13 +19,12 @@
             <div class="item item-body">
                 <span>{{ x.date | date : format}}</span>
                 <p class="body__p">
-                    {{x}}
+                    {{x.body}}
                 </p>
                 <p>
                     <a ng-click="assignApprove(x.id)"> Aprobar {{x.approve}} </a>
                     <a ng-click="assingDisapprove(x.id)"> Desaprobar {{x.disapprove}} </a>
-
-                    <span>Comentarios: </span>
+                    <a ng-click="showComentaries(x)"> Comentarios </a>
                 </p>
             </div>
 
